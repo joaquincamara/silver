@@ -40,8 +40,7 @@ router := silver.NewRouter()
 
 # Dev goals
 
-1. Add Trie tree logic for nested routes
-2. Add a middleware with the next feaures:
+1. Add a middleware with the next feaures:
 
 | Middleware handler | Description                                                             |
 | ------------------ | ----------------------------------------------------------------------- |
