@@ -7,6 +7,7 @@ import (
 
 /*func main() {
 	router := NewRouter()
+	router.Use(middleware.BasicAuth)
 	router.GET("/", HomeRoute)
 	log.Fatal(http.ListenAndServe(":8080", router))
 } */
@@ -18,7 +19,8 @@ func HomeRoute(w http.ResponseWriter, r *http.Request) {
 
 // Router serves http
 type Router struct {
-	handlers map[string]func(http.ResponseWriter, *http.Request)
+	handlers    map[string]func(http.ResponseWriter, *http.Request)
+	middlewares []func(http.Handler) http.Handler
 }
 
 // NewRouter creates instance of Router
@@ -36,6 +38,13 @@ func (s *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	f(w, r)
+}
+
+func (s *Router) Use(middlewares ...func(http.Handler) http.Handler) {
+	if s.handlers != nil {
+		panic("Silver: all middlewares must be defined before routes ")
+	}
+	s.middlewares = append(s.middlewares, middlewares...)
 }
 
 // GET sets get handler
