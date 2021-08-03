@@ -13,7 +13,7 @@ import (
 } */
 
 //
-func HomeRoute(w http.ResponseWriter, r *http.Request) {
+func AlchemyDoor(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome fellow Alchemist to your first route by Silver.go")
 }
 

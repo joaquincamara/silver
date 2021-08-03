@@ -20,7 +20,7 @@ alchemy "github.com/joaquincamara/silver"
 )
 
 func main() {
-router := silver.NewRouter()
+router := silver.AlchemyDoor()
       router.GET("/", silver.HomeRoute)
       log.Fatal(http.ListenAndServe(":8080", router))
 }
