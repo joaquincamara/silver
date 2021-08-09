@@ -21,6 +21,9 @@ import (
 
 func main() {
       router := silver.AlchemyDoor()
+
+      router.Use(middlewares.Recovery)
+
       router.GET("/", silver.AlchemyDoor)
       silver.Start("8080", router)
 }
@@ -42,13 +45,13 @@ func main() {
 
 1. Add a middleware with the next feaures:
 
-| Middleware handler | Description                                                             |
-| ------------------ | ----------------------------------------------------------------------- |
-| BasicAuth          | Basic HTTP authentication                                               |
-| Cors               | Can be used to enable CORS with various options.                        |
-| Logger             | Logs the start and end of each request with the elapsed processing time |
-| RealIP             | Sets a http.Request's RemoteAddr to either X-Real-IP or X-Forwarded-For |
-| Recoverer          | Gracefully absorb panics and prints the stack trace                     |
+| Middleware handler | Description                                                             | Status |
+| ------------------ | ----------------------------------------------------------------------- | ------ |
+| BasicAuth          | Basic HTTP authentication                                               | ------ |
+| Cors               | Can be used to enable CORS with various options.                        | ------ |
+| Logger             | Logs the start and end of each request with the elapsed processing time | ------ |
+| RealIP             | Sets a http.Request's RemoteAddr to either X-Real-IP or X-Forwarded-For | ------ |
+| Recovery           | Gracefully absorb panics and prints the stack trace                     | Done   |
 
 
 
