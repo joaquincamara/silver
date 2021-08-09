@@ -25,7 +25,7 @@ type Router struct {
 }
 
 // NewRouter creates instance of Router
-func TransmuteRouter() *Router {
+func NewRouter() *Router {
 	router := new(Router)
 	router.handlers = make(map[string]func(http.ResponseWriter, *http.Request))
 	return router

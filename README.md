@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-      router := silver.TransmuteRouter()
+      router := silver.NewRouter()
 
       router.Use(middlewares.Recovery)
 
@@ -57,6 +57,6 @@ func main() {
 
 ======================
 
-**silver.go version: 0.1.1**
+**silver.go version: 0.1.0**
 
 ======================
