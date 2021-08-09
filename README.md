@@ -16,12 +16,13 @@ package main
 import (
 "log"
 "net/http"
-alchemy "github.com/joaquincamara/silver"
+"github.com/joaquincamara/silver"
 )
 
 func main() {
-router := silver.AlchemyDoor()
-      router.GET("/", silver.HomeRoute)
+      router := silver.AlchemyDoor()
+      router.GET("/", silver.AlchemyDoor)
+      silver.Start("8080", router)
       log.Fatal(http.ListenAndServe(":8080", router))
 }
 ```
@@ -49,7 +50,7 @@ router := silver.AlchemyDoor()
 | RealIP             | Sets a http.Request's RemoteAddr to either X-Real-IP or X-Forwarded-For |
 | Recoverer          | Gracefully absorb panics and prints the stack trace                     |
 | RequestID          | Injects a request ID into the context of each request                   |
-| Timeout            | Signals to the request context when the timeout deadline is reached     |
+
 
 ======================
 

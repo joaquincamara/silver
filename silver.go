@@ -2,11 +2,12 @@ package silver
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
 /*func main() {
-	router := NewRouter()
+	router := AlchemyDoor()
 	router.Use(middleware.BasicAuth)
 	router.GET("/", HomeRoute)
 	log.Fatal(http.ListenAndServe(":8080", router))
@@ -40,6 +41,12 @@ func (s *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	f(w, r)
 }
 
+func (s *Router) Start(port string, router *Router) {
+	p := ":" + port
+	log.Fatal(http.ListenAndServe(p, router))
+}
+
+// Catch all the middlewares, with a error message if there are not handlers implemented
 func (s *Router) Use(middlewares ...func(http.Handler) http.Handler) {
 	if s.handlers != nil {
 		panic("Silver: all middlewares must be defined before routes ")
