@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-      router := silver.AlchemyDoor()
+      router := silver.TransmuteRouter()
 
       router.Use(middlewares.Recovery)
 
