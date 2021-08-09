@@ -45,10 +45,11 @@ func main() {
 | Middleware handler | Description                                                             |
 | ------------------ | ----------------------------------------------------------------------- |
 | BasicAuth          | Basic HTTP authentication                                               |
+| Cors               | Can be used to enable CORS with various options.                        |
 | Logger             | Logs the start and end of each request with the elapsed processing time |
 | RealIP             | Sets a http.Request's RemoteAddr to either X-Real-IP or X-Forwarded-For |
 | Recoverer          | Gracefully absorb panics and prints the stack trace                     |
-| RequestID          | Injects a request ID into the context of each request                   |
+
 
 
 ======================
