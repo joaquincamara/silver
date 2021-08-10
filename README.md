@@ -47,7 +47,7 @@ func main() {
 | ------------------ | ----------------------------------------------------------------------- | ------ |
 | BasicAuth          | Basic HTTP authentication                                               | ------ |
 | Cors               | Can be used to enable CORS with various options.                        | ------ |
-| Logger             | Logs the start and end of each request with the elapsed processing time | ------ |
+| Logger             | logs the information about each HTTP request.                           | ------ |
 | RealIP             | Sets a http.Request's RemoteAddr to either X-Real-IP or X-Forwarded-For | ------ |
 | Recovery           | Gracefully absorb panics and prints the stack trace                     | Done   |
 
