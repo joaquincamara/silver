@@ -21,7 +21,7 @@ func AlchemyDoor(w http.ResponseWriter, r *http.Request) {
 // Router serves http
 type Router struct {
 	handlers    map[string]func(http.ResponseWriter, *http.Request)
-	middlewares []func(http.Handler) http.Handler
+	middlewares []func(http.HandlerFunc) http.HandlerFunc
 }
 
 // NewRouter creates instance of Router
@@ -33,12 +33,22 @@ func NewRouter() *Router {
 
 // ServeHTTP is called for every connection
 func (s *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
 	f, ok := s.handlers[key(r.Method, r.URL.Path)]
 	if !ok {
 		bad(w)
 		return
 	}
-	f(w, r)
+
+	if s.middlewares != nil {
+		for _, fm := range s.middlewares {
+			m := fm(f)
+			m(w, r)
+		}
+	} else {
+		f(w, r)
+	}
+
 }
 
 func (s *Router) Start(port string, router *Router) {
@@ -46,9 +56,9 @@ func (s *Router) Start(port string, router *Router) {
 	log.Fatal(http.ListenAndServe(p, router))
 }
 
-// Catch all the middlewares, with a error message if there are not handlers implemented
-func (s *Router) Use(middlewares ...func(http.Handler) http.Handler) {
-	if s.handlers != nil {
+// Catch all the middlewares to be implemented in all the routes
+func (s *Router) Use(middlewares ...func(http.HandlerFunc) http.HandlerFunc) {
+	if s.handlers == nil {
 		panic("Silver: all middlewares must be defined before routes ")
 	}
 	s.middlewares = append(s.middlewares, middlewares...)

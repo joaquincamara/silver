@@ -14,18 +14,16 @@ This project started not as a way to reinvent the wheel but to know how the whee
 package main
 
 import (
-"log"
-"net/http"
-"github.com/joaquincamara/silver"
+	"github.com/joaquincamara/silver"
+	"github.com/joaquincamara/silver/middleware"
 )
 
 func main() {
-      router := silver.NewRouter()
+	router := silver.NewRouter()
 
-      router.Use(middlewares.Recovery)
-
-      router.GET("/", silver.AlchemyDoor)
-      silver.Start("8080", router)
+	router.Use(middleware.Logger)
+	router.GET("/", silver.AlchemyDoor)
+	router.Start("8080", router)
 }
 ```
 
