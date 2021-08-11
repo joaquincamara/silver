@@ -55,6 +55,6 @@ func main() {
 
 ======================
 
-**silver.go version: 0.1.0**
+**silver.go version: 0.1.1**
 
 ======================
